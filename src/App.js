@@ -7,7 +7,11 @@ function App() {
 
   const search = () => {
     axios.post('https://correios.contrateumdev.com.br/api/rastreio', input)
-      .then((response) => setPackageData(response.data))
+      .then((response) => {
+        console.log('Respondeu')
+        setPackageData(response.data)
+      })
+    console.log('Aqui ');
   }
 
   const handleChange = (event) => {
@@ -25,7 +29,7 @@ function App() {
       <div>
         {packageData && packageData.quantidade}
       </div>
-      <div> 
+      <div>
         {packageData && packageData.objeto[0].evento.map((obj) => (obj.descricao))}
       </div>
 
