@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Button from './button/index';
 
 function App() {
   const [packageData, setPackageData] = useState();
@@ -35,6 +36,10 @@ function App() {
 
     </div>
   );
+
+  <div>
+    <render className="BasicButtons"></render>();
+  </div>
 }
 
 export default App;
