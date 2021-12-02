@@ -1,20 +1,28 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import Button from './button/index';
+import BasicButtons from './assets/button/index';
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from '@material-ui/core'
 
 function App() {
+
   const [packageData, setPackageData] = useState();
   const [input, setInput] = useState({ code: '', type: 'LB' });
 
   const search = () => {
+
     axios.post('https://correios.contrateumdev.com.br/api/rastreio', input)
       .then((response) => {
-        console.log('Respondeu')
         setPackageData(response.data)
       })
-    console.log('Aqui ');
   }
-
+  const tableHead = ['descrição', 'data', 'hora'];
   const handleChange = (event) => {
 
     const newCode = event.target.value;
@@ -23,23 +31,51 @@ function App() {
 
 
   return (
-    <div>
+
+    <Container maxWidth="sm">
       <input type="text" value={input.code} onChange={(event) => handleChange(event)} />
 
-      <button onClick={() => search()}>Buscar</button>
-      <div>
-        {packageData && packageData.quantidade}
-      </div>
-      <div>
-        {packageData && packageData.objeto[0].evento.map((obj) => (obj.descricao))}
-      </div>
+      <BasicButtons variant="outlined" color="primary" onClick={search}>Buscar</BasicButtons>
 
-    </div>
+
+      <Table>
+        <TableHead>
+          <TableRow>
+            {tableHead.map((row) => (
+              <TableCell> {row}</TableCell>
+            )
+            )}
+          </TableRow>
+        </TableHead>
+
+        <TableBody>
+
+          {packageData && packageData.objeto[0].evento.map((obj) => (
+            <TableRow>
+
+              <TableCell>
+                {obj.descricao}
+              </TableCell>
+
+              <TableCell>
+                {obj.data}
+              </TableCell>
+
+              <TableCell>
+                {obj.hora}
+              </TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+
+      </Table>
+
+
+
+    </Container>
   );
 
-  <div>
-    <render className="BasicButtons"></render>();
-  </div>
 }
 
 export default App;
