@@ -9,10 +9,11 @@ const App = () => {
   return( 
     <Router>
       <QueryObject path="/" />
-      <QueryCep path="/consulta-de-cep" />
+      <QueryCep path="/consulta-de-cep/:cep" />
       <QueryAddress path="/consulta-de-enderecos" />
     </Router>
   );
 }
+
 
 export default App;

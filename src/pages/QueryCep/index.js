@@ -12,7 +12,8 @@ import {
 import { Link } from '@reach/router';
 import QueryCep from '../QueryCep';
 
-const QueryEndress = () => {
+const QueryEndress = (props) => {
+  const { cep } = props
 
   const [addressData, setAddressData] = useState();
   const [input, setInput] = useState({ endress: '', type: 'json' });
@@ -46,7 +47,7 @@ const QueryEndress = () => {
 
       <Button variant="outlined" color="primary" onClick={search}>Buscar</Button>
       {
-        console.log(addressData)
+       cep
       }
 
       <Table>

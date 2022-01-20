@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {navigate} from '@reach/router'
 import axios from 'axios';
 import {
   Container,
@@ -17,7 +18,9 @@ const QueryObject = () => {
   const [cepData, setCepData] = useState();
   const [input, setInput] = useState({ cep: '', type: 'json' });
 
-
+const action = (cep) =>  {
+  navigate(`/consulta-de-cep/${cep}`)
+}
   const search = () => {
     const prefixUrl = 'http://cep.la/'
 
@@ -49,10 +52,7 @@ const QueryObject = () => {
     <Container maxWidth="sm">
       <input type="text" pattern="[A-Za-z]{3}" value={input.code} onChange={(event) => handleChange(event)} />
 
-      <Button variant="outlined" color="primary" onClick={search}>Buscar</Button>
-      {
-        console.log(cepData)
-      }
+      <Button variant="outlined" color="primary" onClick={search}>Buscar</Button> 
       
       <Table>
         <TableHead>
@@ -82,6 +82,9 @@ const QueryObject = () => {
               </TableCell>
               <TableCell>
                 {obj.logradouro}
+              </TableCell>
+              <TableCell onClick={()=> action(obj.cep)}>
+                ver detalhes
               </TableCell>
             </TableRow>
           ))}
