@@ -10,7 +10,7 @@ import {
   Button,
 } from '@material-ui/core'
 import { Link } from '@reach/router';
-import QueryCep from '../QueryCep';
+import QueryCep from '../QueryAddress';
 
 const QueryObject = () => {
 

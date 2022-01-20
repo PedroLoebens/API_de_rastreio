@@ -10,27 +10,32 @@ import {
   Button,
 } from '@material-ui/core'
 import { Link } from '@reach/router';
-import QueryCep from '../QueryCep';
+import QueryCep from '.';
 
-const QueryEndress = () => {
+const QueryObject = () => {
 
-  const [addressData, setAddressData] = useState();
-  const [input, setInput] = useState({ endress: '', type: 'json' });
+  const [cepData, setCepData] = useState();
+  const [input, setInput] = useState({ cep: '', type: 'json' });
+
 
   const search = () => {
     const prefixUrl = 'http://cep.la/'
 
     axios({
       method: "get",
-      url: `${prefixUrl}${input.address}`,
+      url: `${prefixUrl}${input.cep}`,
       headers: { "Accept": "application/json" },
     })
       .then((response) => {
-        setAddressData(response.data)
-      });
-
+        if (response.data.length){
+          setCepData(response.data)
+        }else{ 
+          alert('Busca por CEP indisponível')
+        }
+      })
   }
-  const tableHead = ['CEP', 'LOCALIZAÇÂO']
+
+  const tableHead = ['CEP', 'UF', 'CIDADE', 'BAIRRO', 'LOGRADOURO'];
 
   const handleChange = (event) => {
 
@@ -46,9 +51,9 @@ const QueryEndress = () => {
 
       <Button variant="outlined" color="primary" onClick={search}>Buscar</Button>
       {
-        console.log(addressData)
+        console.log(cepData)
       }
-
+      
       <Table>
         <TableHead>
           <TableRow>
@@ -61,13 +66,22 @@ const QueryEndress = () => {
 
         <TableBody>
 
-          {addressData && addressData.map((obj) => (
+          {cepData && cepData.map((obj) => (
             <TableRow>
               <TableCell>
                 {obj.cep}
               </TableCell>
               <TableCell>
-                {obj.localizacao}
+                {obj.uf}
+              </TableCell>
+              <TableCell>
+                {obj.cidade}
+              </TableCell>
+              <TableCell>
+                {obj.bairro}
+              </TableCell>
+              <TableCell>
+                {obj.logradouro}
               </TableCell>
             </TableRow>
           ))}
@@ -78,5 +92,7 @@ const QueryEndress = () => {
 
     </Container>
   );
+
 }
-export default QueryEndress;
+
+export default QueryObject;
