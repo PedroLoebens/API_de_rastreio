@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import {
   Container,
@@ -18,8 +18,8 @@ const QueryEndress = (props) => {
   const [addressData, setAddressData] = useState();
   const [input, setInput] = useState({ endress: '', type: 'json' });
 
+  const prefixUrl = 'http://cep.la/'
   const search = () => {
-    const prefixUrl = 'http://cep.la/'
 
     axios({
       method: "get",
@@ -31,6 +31,18 @@ const QueryEndress = (props) => {
       });
 
   }
+ useEffect(() => {
+
+  axios({
+    method: "get",
+    url: `${prefixUrl}${cep}`,
+    headers: { "Accept": "application/json" },
+  })
+    .then((response) => {
+      alert(response.data.cep)
+    });
+  }, []);
+
   const tableHead = ['CEP', 'LOCALIZAÇÂO']
 
   const handleChange = (event) => {
