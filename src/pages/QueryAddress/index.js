@@ -53,7 +53,7 @@ const action = (cep) =>  {
       <input type="text" pattern="[A-Za-z]{3}" value={input.code} onChange={(event) => handleChange(event)} />
 
       <Button variant="outlined" color="primary" onClick={search}>Buscar</Button> 
-      
+              
       <Table>
         <TableHead>
           <TableRow>
@@ -83,8 +83,8 @@ const action = (cep) =>  {
               <TableCell>
                 {obj.logradouro}
               </TableCell>
-              <TableCell onClick={()=> action(obj.cep)}>
-                ver detalhes
+              <TableCell>
+              <Button variant="outlined" color="primary" onClick={()=> action(obj.cep)}>Ver detalhes</Button> 
               </TableCell>
             </TableRow>
           ))}
