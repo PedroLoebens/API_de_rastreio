@@ -38,25 +38,45 @@ const QueryEndress = (props) => {
 
     <Container maxWidth="sm">
       <TextField
+        margin="normal"
         size="small"
-        name="bairro"
-        id="outlined-basic"
+        label="Bairro"
+        id="outlined-name"
         variant="outlined"
-        value={addressData && addressData.bairro} />
+        value={addressData ? addressData.bairro : ''} />
 
       <TextField
+        margin="normal"
         size="small"
-        name="bairro"
-        id="outlined-basic"
+        label="Cidade"
+        id="outlined-name"
         variant="outlined"
-        value={addressData && addressData.bairro} />
+        value={addressData ? addressData.cidade : ''} />
 
       <TextField
+        margin="normal"
         size="small"
-        name="bairro"
-        id="outlined-basic"
+        label="Cep"
+        id="outlined-name"
         variant="outlined"
-        value={addressData && addressData.bairro} />
+        value={addressData ? addressData.cep : ''} />
+
+      <TextField
+        margin="normal"
+        size="small"
+        label="Logradouro"
+        id="outlined-name"
+        variant="outlined"
+        value={addressData ? addressData.logradouro : ''} />
+
+      <TextField
+        margin="normal"
+        size="small"
+        label="UF"
+        id="outlined-name"
+        variant="outlined"
+        value={addressData ? addressData.uf : ''} />
+
     </Container>
   );
 }
