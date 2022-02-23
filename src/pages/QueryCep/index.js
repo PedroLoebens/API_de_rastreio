@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom';
-import { useFormik } from 'formik';
+import { useFormik, Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import {
   Container,
@@ -46,54 +46,58 @@ const QueryEndress = (props) => {
     })
   };
   return (
+    <div>
 
-    <Container maxWidth="sm">
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          margin="normal"
-          size="small"
-          label="Bairro"
-          id="outlined-name"
-          variant="outlined"
-          value={addressData ? addressData.bairro : ''} />
+      <Formik onSubmit={onSubmit}>
 
-        <TextField
-          margin="normal"
-          size="small"
-          label="Cidade"
-          id="outlined-name"
-          variant="outlined"
-          value={addressData ? addressData.cidade : ''} />
+        <Form onSubmit={formik.handleSubmit}>
+          <Field
+            margin="normal"
+            size="small"
+            label="Bairro"
+            id="outlined-name"
+            variant="outlined"
+            value={addressData ? addressData.bairro : ''} />
 
-        <TextField
-          margin="normal"
-          size="small"
-          label="Cep"
-          id="outlined-name"
-          variant="outlined"
-          value={addressData ? addressData.cep : ''} />
+          <Field
+            margin="normal"
+            size="small"
+            label="Cidade"
+            id="outlined-name"
+            variant="outlined"
+            value={addressData ? addressData.cidade : ''} />
 
-        <TextField
-          margin="normal"
-          size="small"
-          label="Logradouro"
-          id="outlined-name"
-          variant="outlined"
-          value={addressData ? addressData.logradouro : ''} />
+          <Field
+            margin="normal"
+            size="small"
+            label="Cep"
+            id="outlined-name"
+            variant="outlined"
+            value={addressData ? addressData.cep : ''} />
 
-        <TextField
-          margin="normal"
-          size="small"
-          label="UF"
-          id="outlined-name"
-          variant="outlined"
-          value={addressData ? addressData.uf : ''} />
+          <Field
+            margin="normal"
+            size="small"
+            label="Logradouro"
+            id="outlined-name"
+            variant="outlined"
+            value={addressData ? addressData.logradouro : ''} />
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
-        </Button>
-      </form>
-    </Container >
+          <Field
+            margin="normal"
+            size="small"
+            label="UF"
+            id="outlined-name"
+            variant="outlined"
+            value={addressData ? addressData.uf : ''} />
+
+          <Button color="primary" variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        
+    </Form>
+    </Formik >
+    </div >
   );
 }
 export default QueryEndress;
